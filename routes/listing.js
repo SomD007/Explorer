@@ -31,6 +31,11 @@ router
 //New Route
 router.get("/new", isLoggedIn, listingController.renderNewForm);
 
+router.route("/about")
+.get((req, res) => {
+    // res.send("About Page");
+    res.render("listings/about.ejs");
+});
 
 
 router.route("/:id")
@@ -45,6 +50,57 @@ router.route("/:id")
 
 //Index Route
 // router.get("/", wrapAsync(listingController.index));
+
+
+router.route("/:id/visited")
+    .post(
+        async (req, res) => {
+            // console.log("\n",req.body.listing);
+            console.log("\n",req.user._id); //current user
+            let currUser = req.user._id; //current user
+            // console.log("\n",`listings/${req.path}`);
+            const previousUrl = req.get('Referer'); //Stores the previous url to redirect to after clicking the button i visited
+            // console.log(previousUrl);
+
+            // let Listing = Listing.
+
+            // let updateData = {
+            //     count: count + 1,
+            // }
+            let { id } = req.params; //Curent Listing id
+            console.log(id);
+            listing = await Listing.findById(id);
+
+             // If the user has already visited, you might skip counting again
+            if (listing.visits.includes(currUser)) {
+                req.flash("success","You have Already Visited");
+                // return res.send("Already visited");
+                return res.redirect(previousUrl);
+            }
+
+            // Add user to visits array and increment count atomically
+            await Listing.findByIdAndUpdate(
+            id,
+            {
+                $push: { visits: currUser }, // Add user to visits array
+                $inc: { count: 1 },          // Increment count by 1
+            },
+            { new: true }
+            ); 
+
+            // listing.visits.push(currUser);
+            // // console.log("Listing:\n", listing);
+            // console.log("Count: ",listing.count);
+            // updatedCount = listing.count + 1;
+
+            // await Listing.findByIdAndUpdate(id, {count: updatedCount});
+
+            
+            // res.send("Hello");
+            // req.flash("success","Congratulations on visiting the Place");
+            res.redirect(previousUrl);
+        }
+    );
 
 
 

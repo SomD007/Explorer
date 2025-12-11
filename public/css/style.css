@@ -278,6 +278,417 @@ body{
 
 
 
+.visit-div{
+    margin-top: 6px !important;
+}
+
+.visit-count{
+   font-size: 30px;
+   font-weight: 90;
+   color: #EE82EE;
+}
+
+.visit-btn{
+    font-size: 14px;
+    
+}
+
+.visit-btn button{
+    border:none;
+    border-radius: 5px;
+    background-color: #B2BABB;
+    width:90px;
+    height:30px;
+}
+
+.info-viewed-btn{
+    background-color: #e7f3fe;
+    border-left: 6px solid #2196F3;
+    margin-top: 20px !important;
+}
+
+
+
+/* About Page  */
+/* --- Color Variables (Heritage/Shuttle Menswear Inspired) --- */
+:root {
+    --color-charcoal: #181818; /* Deep base */
+    --color-dark-gray: #282828; /* Card base */
+    --color-burgundy: #800020; /* Primary deep accent */
+    --color-burgundy-dark: #500010; /* Darker accent for active state */
+    --color-gold-accent: #D4AF37; /* Secondary contrast accent */
+    --color-off-white: #F0F0F0; /* Text */
+    --color-light-text: #B0B0B0; /* Secondary text */
+}
+
+/* --- Base Styles --- */
+body {
+    font-family: 'Montserrat', sans-serif;
+    margin: 0;
+    line-height: 1.6;
+    color: var(--color-off-white);
+    background-color: var(--color-charcoal);
+}
+
+h1, h2, h3 {
+    font-family: 'Playfair Display', serif; 
+    letter-spacing: 1px;
+    text-transform: uppercase;
+    color: var(--color-off-white);
+}
+
+.container {
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: 20px;
+}
+
+/* --- 1. Hero Section --- */
+.hero-section {
+    width:90%;
+    margin:auto;
+    background-color: var(--color-dark-gray);
+    background-image: url("https://images.unsplash.com/photo-1694248607966-7e6ac34c6e56?ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&q=80&w=1170");
+    background-repeat: no-repeat;
+    background-position: center;
+    padding: 80px 20px;
+    text-align: center;
+    border-bottom: 5px solid var(--color-burgundy);
+    box-shadow: 0 5px 20px rgba(0, 0, 0, 0.7); 
+}
+
+.hero-section h1 {
+    font-size: 3.5em;
+    color: var(--color-gold-accent); 
+    letter-spacing: 5px;
+    margin: 0 0 10px;
+    text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.8);
+}
+
+.hero-section p {
+    font-size: 1.2em;
+    color: var(--color-light-text);
+}
+
+/* --- 2. Info Cards Grid Layout --- */
+.info-grid {
+    display: grid;
+    grid-template-columns: repeat(4, 1fr); 
+    gap: 30px;
+    padding: 60px 0;
+}
+
+.info-card.featured {
+    grid-column: span 2; 
+    background-color: var(--color-burgundy);
+    color: var(--color-off-white);
+    transform: translateY(-10px); 
+    box-shadow: 0 15px 30px rgba(128, 0, 32, 0.5); 
+    border: none;
+}
+
+.info-card.featured h3, .info-card.featured p {
+    color: var(--color-off-white);
+}
+
+.visual-break {
+    grid-column: span 2; 
+    overflow: hidden;
+    border-radius: 8px;
+    box-shadow: 0 5px 15px rgba(0, 0, 0, 0.8); 
+}
+
+.heritage-img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    filter: saturate(0.5) contrast(1.1) brightness(0.8);
+    transition: transform 0.4s ease, filter 0.4s ease;
+    display: block;
+}
+
+.visual-break:hover .heritage-img {
+    transform: scale(1.05); 
+    filter: saturate(0.8) contrast(1.2) brightness(1); 
+}
+
+/* Individual Card Styling */
+.info-card {
+    background-color: var(--color-dark-gray);
+    padding: 30px;
+    border: 1px solid var(--color-charcoal);
+    border-radius: 8px;
+    text-align: center;
+    transition: background-color 0.3s, border-color 0.3s, transform 0.3s, box-shadow 0.3s;
+    box-shadow: inset 0 0 5px rgba(0, 0, 0, 0.5), 0 5px 10px rgba(0, 0, 0, 0.6); 
+}
+
+.info-card:not(.featured):hover {
+    background-color: var(--color-charcoal);
+    border-color: var(--color-burgundy);
+    transform: translateY(-5px); 
+    box-shadow: 0 8px 20px rgba(0, 0, 0, 0.8), 0 0 10px rgba(212, 175, 55, 0.3); 
+}
+
+.info-card h3 {
+    font-size: 1.5em;
+    margin-top: 15px;
+    color: var(--color-off-white);
+}
+
+.info-card p {
+    color: var(--color-light-text);
+    font-size: 0.95em;
+}
+
+.info-card .icon {
+    width: 45px;
+    height: 45px;
+    color: var(--color-gold-accent); 
+    stroke: var(--color-gold-accent);
+    stroke-width: 2;
+}
+
+.info-card.featured .icon {
+    color: var(--color-off-white); 
+    stroke: var(--color-off-white);
+}
+
+/* CTA Link Button */
+.cta-link {
+    display: inline-block;
+    color: var(--color-gold-accent);
+    background-color: var(--color-dark-gray);
+    padding: 10px 20px;
+    text-decoration: none;
+    font-weight: 700;
+    margin-top: 25px;
+    border-radius: 4px;
+    transition: background-color 0.3s, color 0.3s, box-shadow 0.3s;
+    border: 1px solid var(--color-gold-accent);
+    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.5);
+    text-transform: uppercase;
+}
+
+.cta-link:hover {
+    background-color: var(--color-gold-accent);
+    color: var(--color-charcoal);
+    box-shadow: 0 4px 12px rgba(212, 175, 55, 0.6); 
+}
+
+
+/* --- 3. CTA Section --- */
+.cta-section {
+    margin:auto;
+    text-align: center;
+    padding: 60px 20px;
+    width: 90%;
+    /* background-color: var(--color-charcoal); */
+    background-image: url("https://plus.unsplash.com/premium_photo-1661962418584-0b6f821c7094?ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&q=80&w=1171");
+    background-position: center;
+    border-top: 1px solid var(--color-dark-gray);
+
+}
+
+.cta-section h2 {
+    color: var(--color-off-white);
+    font-size: 2.2em;
+    margin-bottom: 30px;
+}
+
+.main-button {
+    display: inline-block;
+    background-color: var(--color-burgundy);
+    color: var(--color-off-white);
+    padding: 18px 45px;
+    text-decoration: none;
+    font-size: 1.2em;
+    font-weight: 700;
+    border-radius: 4px; 
+    transition: background-color 0.3s, transform 0.2s, box-shadow 0.3s;
+    border: 2px solid var(--color-burgundy);
+    box-shadow: 0 8px 25px rgba(128, 0, 32, 0.7); 
+}
+
+.main-button:hover {
+    background-color: var(--color-burgundy-dark);
+    transform: translateY(-3px);
+    box-shadow: 0 15px 35px rgba(128, 0, 32, 0.9); 
+}
+
+/* --- 4. Developers Section (New) --- */
+.developers-section {
+    padding: 80px 0;
+    background-color: var(--color-dark-gray);
+    border-top: 5px solid var(--color-burgundy);
+    box-shadow: 0 5px 20px rgba(0, 0, 0, 0.7); 
+}
+
+.developers-section .section-title {
+    text-align: center;
+    font-size: 2.5em;
+    color: var(--color-gold-accent); 
+    margin-bottom: 50px;
+    text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.8);
+}
+
+.dev-card-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+    gap: 30px;
+}
+
+/* --- Developer Card Flip Animation --- */
+.dev-card-flip-container {
+    perspective: 1000px;
+    height: 400px;
+}
+
+.dev-card-flip-inner {
+    margin:auto;
+    position: relative;
+    width: 70%;
+    height: 100%;
+    text-align: center;
+    transition: transform 0.8s;
+    transform-style: preserve-3d; 
+    border-radius: 8px;
+    box-shadow: 0 5px 20px rgba(0, 0, 0, 0.5);
+}
+
+.dev-card-flip-container:hover .dev-card-flip-inner {
+    transform: rotateY(180deg);
+}
+
+.dev-card-front, .dev-card-back {
+    position: absolute;
+    width: 100%;
+    height: 100%;
+    backface-visibility: hidden; 
+    /* background-color: var(--color-charcoal); */
+    background-color: var(rgb(92, 92, 92));
+    border: 1px solid var(--color-dark-gray);
+    border-radius: 8px;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    padding: 20px;
+    box-sizing: border-box;
+    box-shadow: 0 5px 15px rgba(0, 0, 0, 0.6);
+}
+
+.dev-card-back {
+    transform: rotateY(180deg);
+    background-color: var(--color-burgundy); /* Burgundy back for contrast */
+    color: var(--color-off-white);
+    justify-content: space-evenly;
+}
+
+.dev-avatar {
+    width: 120px;
+    height: 120px;
+    border-radius: 50%;
+    object-fit: cover;
+    margin-bottom: 15px;
+    border: 3px solid var(--color-gold-accent);
+    box-shadow: 0 0 10px rgba(212, 175, 55, 0.6);
+}
+
+.dev-name{
+    color:white;
+}
+
+.dev-role {
+    color: var(--color-gold-accent);
+    font-weight: 700;
+    margin: 5px 0;
+}
+
+.dev-bio {
+    color: var(--color-light-text);
+    font-style: italic;
+    font-size: 0.9em;
+    max-width: 90%;
+}
+
+.flip-hint {
+    position: absolute;
+    bottom: 10px;
+    right: 10px;
+    font-size: 0.7em;
+    color: var(--color-light-text);
+}
+
+/* Back Side (GitHub) Styles */
+.github-icon {
+    width: 60px;
+    height: 60px;
+    color: var(--color-off-white);
+}
+
+.github-name {
+    font-family: 'Montserrat', sans-serif;
+    font-weight: 400;
+    font-size: 1.1em;
+    margin: 10px 0 20px;
+}
+
+.github-link {
+    display: inline-block;
+    color: var(--color-burgundy);
+    background-color: var(--color-off-white);
+    padding: 10px 25px;
+    border-radius: 4px;
+    text-decoration: none;
+    font-weight: 700;
+    text-transform: uppercase;
+    transition: all 0.3s;
+}
+
+.github-link:hover {
+    background-color: var(--color-gold-accent);
+    color: var(--color-charcoal);
+    transform: scale(1.05);
+}
+
+/* --- Footer --- */
+.main-footer {
+    background-color: var(--color-dark-gray);
+    color: var(--color-light-text);
+    text-align: center;
+    padding: 25px;
+    font-size: 0.85em;
+    border-top: 1px solid var(--color-dark-gray);
+    box-shadow: 0 -5px 15px rgba(0, 0, 0, 0.5); 
+}
+
+/* --- Responsive Adjustments --- */
+@media (max-width: 900px) {
+    .info-grid, .dev-card-grid {
+        grid-template-columns: repeat(2, 1fr); 
+    }
+    .info-card.featured, .visual-break {
+        grid-column: span 1; 
+    }
+    .dev-card-flip-container {
+        height: 380px; /* Adjust height slightly for smaller screens */
+    }
+}
+
+@media (max-width: 600px) {
+    .info-grid, .dev-card-grid {
+        grid-template-columns: 1fr; 
+    }
+    .hero-section h1 {
+        font-size: 2.5em;
+    }
+}
+
+
+/* About Page CSS Ends */
+
+
 
 @media (max-width: 400px){
 
@@ -338,6 +749,11 @@ body{
     .rating-stars-card{
     margin-left:0 !important;
 
+
+    .dev-bio{
+        /* font-size: 100px !important; */
+    }
+
     
        
 }
@@ -366,4 +782,13 @@ body{
         
     }
 
+}
+
+
+#map {
+  height: 400px;
+  width: 100%;
+  border-radius: 10px;
+  margin: 20px 0;
+  box-shadow: 0 4px 12px rgba(0,0,0,0.2);
 }

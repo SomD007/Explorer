@@ -16,6 +16,17 @@ const listingSchema = new Schema({
     location: String,
     // country: String,
     state: String,
+    count:{
+
+        type: Number, //Number of people visited
+        default: 0,
+    },
+    visits: [
+        {
+            type: Schema.Types.ObjectId,
+            ref: "User",
+        }
+    ],
     reviews: [
         {
             type: Schema.Types.ObjectId,

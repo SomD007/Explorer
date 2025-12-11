@@ -15,6 +15,7 @@ const ExpressError = require("./utils/ExpressError.js");
 const session = require("express-session");
 const MongoStore = require('connect-mongo');
 const flash = require("connect-flash");
+const axios = require('axios');
 
 const passport = require("passport");
 const LocalStrategy = require("passport-local");
@@ -111,6 +112,64 @@ app.use("/",userRouter);
 
 
 
+
+
+
+app.get("/geocode", async (req, res) => {
+  const { location } = req.query;
+  if (!location) {
+    return res
+      .status(400)
+      .json({ error: "Location query parameter is required" });
+  }
+
+  try {
+    console.log("🔍 Searching coordinates for:", location);
+
+    // 1️⃣ Try Nominatim first
+    let response = await axios.get(
+      `https://nominatim.openstreetmap.org/search?format=json&limit=1&q=${encodeURIComponent(
+        location
+      )}`
+    );
+
+    let lat, lon;
+
+    if (response.data && response.data.length > 0) {
+      lat = response.data[0].lat;
+      lon = response.data[0].lon;
+      console.log("✅ Found using Nominatim:", lat, lon);
+    } else {
+      // 2️⃣ If Nominatim fails, use Photon API
+      console.log("⚠️ Nominatim failed — trying Photon...");
+      response = await axios.get(
+        `https://photon.komoot.io/api/?q=${encodeURIComponent(location)}`
+      );
+
+      if (response.data.features && response.data.features.length > 0) {
+        const coords = response.data.features[0].geometry.coordinates;
+        lon = coords[0];
+        lat = coords[1];
+        console.log("✅ Found using Photon:", lat, lon);
+      }
+    }
+
+    // 3️⃣ Return result or error
+    if (!lat || !lon) {
+      return res.status(404).json({ error: "No coordinates found" });
+    }
+
+    res.json({ lat, lon });
+  } catch (err) {
+    console.error("❌ Geocoding error:", err.message);
+    res.status(500).json({ error: "Failed to fetch coordinates" });
+  }
+});
+
+
+
+
+
 app.get("/", (req, res) => {
     res.redirect("/listings");
 });
@@ -148,7 +207,7 @@ app.use((err, req, res, next) => {
 });
 
 
-const PORT = 8000;
+const PORT = process.env.PORT || 8000;
 app.listen(PORT, () => {
     console.log("App is Running at Port ", PORT);
 });
