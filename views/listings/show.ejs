@@ -35,8 +35,12 @@
 
         <br>
 
-
-
+        <!-- Map Loading animation -->
+        <div id="map-loader" class="map-loader">
+            <div class="spinner"></div>
+            <p>Loading map...</p>
+            
+        </div>
 
         <div id="map" data-location="<%= listing.location %>"></div>
 
@@ -45,7 +49,7 @@
         <script>
             const locationString = "<%= listing.location %>";
         </script>
-        <script src="/js/script.js"></script>
+        <!-- <script src="/js/script.js"></script> -->
 
 
 

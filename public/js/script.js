@@ -48,82 +48,98 @@ searchBtn.addEventListener("click", (event) => {
 });
 
 
-// const trendingFilter = document.getElementById("trending-filter");
-// trendingFilter.addEventListener("click", () => {
-//     console.log("trending filter");
-//     // console.log(listingCards[2].children[0].children[2].children[0].children[2]);
-//     let counter = 1;
-//     for(listingCard of listingCards){ //iterating over each listing card
-//         if(counter > 3){ //Select only the first 3 cards
-//           listingCard.style.display = "none"; 
-//         }else{
-//         listingCard.style.display = "block"; 
-//         counter++;
-//       }
-      
-//     }
+const trendingFilter = document.getElementById("trending-filter");
+if (trendingFilter) {
+  trendingFilter.addEventListener("click", () => {
+    console.log("trending filter");
+    // console.log(listingCards[2].children[0].children[2].children[0].children[2]);
+    let counter = 1;
+    for (listingCard of listingCards) { //iterating over each listing card
+      if (counter > 3) { //Select only the first 3 cards
+        listingCard.style.display = "none";
+      } else {
+        listingCard.style.display = "block";
+        counter++;
+      }
 
-// })
+    }
+
+  })
 
 
-// const damsFilter = document.getElementById("dams-filter"); //storing the filterr button
-// damsFilter.addEventListener("click", () => {
-
-//     for(listingCard of listingCards){ //iterating over each listing card
-//       let cardTitle = listingCard.children[0].children[2].children[0].children[0];
-//         if(!cardTitle.textContent.toLowerCase().includes("dam")){ //Select cards which includes the word dam in it's title
-          
-//           listingCard.style.display = "none"; 
-//         }else{
-//           console.log(listingCard.title);
-//         listingCard.style.display = "block"; 
-        
-//       }
-      
-//     }
-
-// })
+}
 
 
 
-// const lakesFilter = document.getElementById("lakes-filter"); //storing the filterr button
-// lakesFilter.addEventListener("click", () => {
-// console.log("lakes filter");
-//     for(listingCard of listingCards){ //iterating over each listing card
-//       let cardTitle = listingCard.children[0].children[2].children[0].children[0];
-//         if(!cardTitle.textContent.toLowerCase().includes("lake")){ //Select cards which includes the word lake in it's title
-          
-//           listingCard.style.display = "none"; 
-//         }else{
-//           console.log(listingCard.title);
-//         listingCard.style.display = "block"; 
-        
-//       }
-      
-//     }
 
-// })
+const damsFilter = document.getElementById("dams-filter"); //storing the filterr button
+if (damsFilter) {
+
+  damsFilter.addEventListener("click", () => {
+
+    for (listingCard of listingCards) { //iterating over each listing card
+      let cardTitle = listingCard.children[0].children[2].children[0].children[0];
+      if (!cardTitle.textContent.toLowerCase().includes("dam")) { //Select cards which includes the word dam in it's title
+
+        listingCard.style.display = "none";
+      } else {
+        console.log(listingCard.title);
+        listingCard.style.display = "block";
+
+      }
+
+    }
+
+  })
 
 
+}
 
-// const parksFilter = document.getElementById("parks-filter"); //storing the filterr button
-// parksFilter.addEventListener("click", () => {
-// console.log("parks filter");
-//     for(listingCard of listingCards){ //iterating over each listing card
-//       let cardTitle = listingCard.children[0].children[2].children[0].children[0];
-//         if(!cardTitle.textContent.toLowerCase().includes("park")){ //Select cards which includes the word park in it's title
-          
-//           listingCard.style.display = "none"; 
-//         }else{
-//           console.log(listingCard.title);
-//         listingCard.style.display = "block"; 
-        
-//       }
-      
-//     }
 
-// })
+const lakesFilter = document.getElementById("lakes-filter"); //storing the filterr button
+if(lakesFilter){
+  lakesFilter.addEventListener("click", () => {
+console.log("lakes filter");
+    for(listingCard of listingCards){ //iterating over each listing card
+      let cardTitle = listingCard.children[0].children[2].children[0].children[0];
+        if(!cardTitle.textContent.toLowerCase().includes("lake")){ //Select cards which includes the word lake in it's title
 
+          listingCard.style.display = "none"; 
+        }else{
+          console.log(listingCard.title);
+        listingCard.style.display = "block"; 
+
+      }
+
+    }
+
+})
+
+
+}
+
+
+const parksFilter = document.getElementById("parks-filter"); //storing the filterr button
+if(parksFilter){
+  parksFilter.addEventListener("click", () => {
+console.log("parks filter");
+    for(listingCard of listingCards){ //iterating over each listing card
+      let cardTitle = listingCard.children[0].children[2].children[0].children[0];
+        if(!cardTitle.textContent.toLowerCase().includes("park")){ //Select cards which includes the word park in it's title
+
+          listingCard.style.display = "none"; 
+        }else{
+          console.log(listingCard.title);
+        listingCard.style.display = "block";
+
+      }
+
+    }
+
+})
+
+
+}
 
 
 
@@ -144,9 +160,9 @@ searchBtn.addEventListener("click", (event) => {
 //             listingCard.style.display = "none"; 
 //           }else{
 //           listingCard.style.display = "block"; //if the number is more than 0.5 then display the listing
-        
+
 //           }
-      
+
 //       }
 
 //     })
@@ -194,10 +210,17 @@ async function getCoordinates(locationString) {
 
 
 async function initMap() {
+  const loader = document.getElementById("map-loader");
+  const mapContainer = document.getElementById("map");
+
   const location = document.getElementById("map").dataset.location;
 
   try {
     const [lat, lon] = await getCoordinates(location);
+
+    // Hide loader, show map when coordinates are found
+    loader.style.display = "none";
+    mapContainer.style.display = "block";
 
     const map = L.map("map").setView([lat, lon], 13);
     L.tileLayer("https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png", {
@@ -208,6 +231,7 @@ async function initMap() {
       .bindPopup(location)
       .openPopup();
   } catch (err) {
+    loader.innerHTML = `<p style="color:red;">Failed to load map.</p>`;
     console.error("Map failed to load:", err.message);
   }
 }
