@@ -145,6 +145,60 @@ console.log("parks filter");
 
 
 
+const mandirFilter = document.getElementById("mandir-filter"); //storing the filterr button
+if(mandirFilter){
+  mandirFilter.addEventListener("click", () => {
+console.log("mandir filter");
+    for(listingCard of listingCards){ //iterating over each listing card
+      let cardTitle = listingCard.children[0].children[2].children[0].children[0];
+        if(!cardTitle.textContent.toLowerCase().includes("mandir")){ //Select cards which includes the word park in it's title
+
+          listingCard.style.display = "none"; 
+        }else{
+          console.log(listingCard.title);
+        listingCard.style.display = "block";
+
+      }
+
+    }
+
+})
+
+
+}
+
+
+
+
+
+
+
+const poolsFilter = document.getElementById("pools-filter"); //storing the filterr button
+if(poolsFilter){
+  poolsFilter.addEventListener("click", () => {
+console.log("pools filter");
+    for(listingCard of listingCards){ //iterating over each listing card
+      let cardTitle = listingCard.children[0].children[2].children[0].children[0];
+        if(!cardTitle.textContent.toLowerCase().includes("pool")){ //Select cards which includes the word park in it's title
+
+          listingCard.style.display = "none"; 
+        }else{
+          console.log(listingCard.title);
+        listingCard.style.display = "block";
+
+      }
+
+    }
+
+})
+
+
+}
+
+
+
+
+
 
 
 

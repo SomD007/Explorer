@@ -39,7 +39,7 @@ main().then(() => {
 async function main() {
     await mongoose.connect(dbUrl);
 }
-console.log(process.env.ATLASDB_URL);
+//console.log(process.env.ATLASDB_URL);
 
 app.set("view engine", "ejs");
 app.set("views", path.join(__dirname, "views"));
